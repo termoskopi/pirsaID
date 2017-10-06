@@ -1,0 +1,18 @@
+Face Recognition System API - Development Notes
+
+Created @ Sep 29, 2017 by Rohmad Raharjo
+
+
+Environment Requirement
+- Visual Studio 2012 or later for development environment
+- .NET Framework 4.5 or later (CLR 4.0)
+- IIS Web Server 7.5 or later (Version 8.5 is highly recommended)
+
+
+Configuration
+Any system configuration will be placed on App.config (on class library/desktop application) and on Web.config (on Web API application)
+
+Technology
+- .NET Framework 4.5 (CLR 4.0)
+- ASP .NET Web API 2
+- EmguCV
