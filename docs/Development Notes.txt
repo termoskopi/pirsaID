@@ -15,4 +15,4 @@ Any system configuration will be placed on App.config (on class library/desktop 
 Technology
 - .NET Framework 4.5 (CLR 4.0)
 - ASP .NET Web API 2
-- EmguCV
+- EmguCV 2.9
