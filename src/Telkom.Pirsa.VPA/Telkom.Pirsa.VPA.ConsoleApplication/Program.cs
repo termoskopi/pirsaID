@@ -18,10 +18,10 @@ namespace Telkom.Pirsa.VPA.ConsoleApplication
         {
             //CaptureMain();
             //TrainMain();
-            //TestMain();
-            var video = @"E:\Users\Rohmad Raharjo\Videos\Captures\muthiah2.mp4";
-            double size = new FileInfo(video).Length;
-            Console.WriteLine("Loading a video file {0} with size of {1} MB", video, (size/1024/1024).ToString("N2"));
+            TestMain();
+            //var video = @"E:\Users\Rohmad Raharjo\Videos\Captures\muthiah2.mp4";
+            //double size = new FileInfo(video).Length;
+            //Console.WriteLine("Loading a video file {0} with size of {1} MB", video, (size/1024/1024).ToString("N2"));
             Console.ReadKey();
 
         }
@@ -69,7 +69,7 @@ namespace Telkom.Pirsa.VPA.ConsoleApplication
 
         static void TestMain()
         {
-            var video = @"E:\Users\Rohmad Raharjo\Videos\Captures\test2.mp4";
+            var video = @"E:\Users\Rohmad Raharjo\Videos\Captures\fatimah1.mp4";
             if (!Directory.Exists(@"E:\!Project\Captured\Log"))
             {
                 Directory.CreateDirectory(@"E:\!Project\Captured\Log");

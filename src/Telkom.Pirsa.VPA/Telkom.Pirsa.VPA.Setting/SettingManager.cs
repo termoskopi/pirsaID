@@ -98,9 +98,9 @@ namespace Telkom.Pirsa.VPA.Setting
                     format = System.Drawing.Imaging.ImageFormat.Png;
                 else if(ext == "BMP")
                     format = System.Drawing.Imaging.ImageFormat.Bmp;
-                var trainingPath = contents[5];
-                var testPath = contents[6];
-                var logPath = contents[7];
+                var trainingPath = contents[5].Trim();
+                var testPath = contents[6].Trim();
+                var logPath = contents[7].Trim();
                 var threshold = 0.0;
                 if (!double.TryParse(contents[8].Trim(), out threshold))
                 {
@@ -121,8 +121,8 @@ namespace Telkom.Pirsa.VPA.Setting
                 {
                     throw new ArgumentException("The maximum size value must be an integer!");
                 }
-                var useHistogram = contents[12];
-                var classiferPath = contents[13];
+                var useHistogram = contents[12].Trim();
+                var classiferPath = contents[13].Trim();
                 var minNeighbour = 0;
                 if (!int.TryParse(contents[14].Trim(), out minNeighbour))
                 {

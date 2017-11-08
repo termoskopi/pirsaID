@@ -36,6 +36,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.pComponentText = new System.Windows.Forms.TextBox();
             this.ContentPanel = new System.Windows.Forms.Panel();
+            this.userHistogramCheckBox = new System.Windows.Forms.CheckBox();
             this.scaleFactorText = new System.Windows.Forms.TextBox();
             this.recognizerPathText = new System.Windows.Forms.TextBox();
             this.minNeighbourText = new System.Windows.Forms.TextBox();
@@ -47,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.userHistogramCheckBox = new System.Windows.Forms.CheckBox();
             this.browseRecognizerFile = new System.Windows.Forms.OpenFileDialog();
             this.actionPanel.SuspendLayout();
             this.ContentPanel.SuspendLayout();
@@ -63,6 +63,7 @@
             this.resetButton.TabIndex = 1;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.ResetAction);
             // 
             // actionPanel
             // 
@@ -91,6 +92,7 @@
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveFormAction);
             // 
             // recognizerPathBrowse
             // 
@@ -100,6 +102,7 @@
             this.recognizerPathBrowse.TabIndex = 21;
             this.recognizerPathBrowse.Text = "...";
             this.recognizerPathBrowse.UseVisualStyleBackColor = true;
+            this.recognizerPathBrowse.Click += new System.EventHandler(this.BrowseForClassifierFile);
             // 
             // label10
             // 
@@ -121,7 +124,7 @@
             // 
             // pComponentText
             // 
-            this.pComponentText.Cursor = System.Windows.Forms.Cursors.No;
+            this.pComponentText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.pComponentText.Location = new System.Drawing.Point(140, 160);
             this.pComponentText.Name = "pComponentText";
             this.pComponentText.Size = new System.Drawing.Size(224, 20);
@@ -151,9 +154,19 @@
             this.ContentPanel.Size = new System.Drawing.Size(376, 524);
             this.ContentPanel.TabIndex = 0;
             // 
+            // userHistogramCheckBox
+            // 
+            this.userHistogramCheckBox.AutoSize = true;
+            this.userHistogramCheckBox.Location = new System.Drawing.Point(140, 190);
+            this.userHistogramCheckBox.Name = "userHistogramCheckBox";
+            this.userHistogramCheckBox.Size = new System.Drawing.Size(155, 17);
+            this.userHistogramCheckBox.TabIndex = 25;
+            this.userHistogramCheckBox.Text = "Use Histogram Equalization";
+            this.userHistogramCheckBox.UseVisualStyleBackColor = true;
+            // 
             // scaleFactorText
             // 
-            this.scaleFactorText.Cursor = System.Windows.Forms.Cursors.No;
+            this.scaleFactorText.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.scaleFactorText.Location = new System.Drawing.Point(140, 127);
             this.scaleFactorText.Name = "scaleFactorText";
             this.scaleFactorText.Size = new System.Drawing.Size(224, 20);
@@ -250,16 +263,6 @@
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.MainLayout.Size = new System.Drawing.Size(402, 550);
             this.MainLayout.TabIndex = 1;
-            // 
-            // userHistogramCheckBox
-            // 
-            this.userHistogramCheckBox.AutoSize = true;
-            this.userHistogramCheckBox.Location = new System.Drawing.Point(140, 190);
-            this.userHistogramCheckBox.Name = "userHistogramCheckBox";
-            this.userHistogramCheckBox.Size = new System.Drawing.Size(155, 17);
-            this.userHistogramCheckBox.TabIndex = 25;
-            this.userHistogramCheckBox.Text = "Use Histogram Equalization";
-            this.userHistogramCheckBox.UseVisualStyleBackColor = true;
             // 
             // browseRecognizerFile
             // 

@@ -75,7 +75,7 @@
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.MainLayout.Size = new System.Drawing.Size(354, 507);
+            this.MainLayout.Size = new System.Drawing.Size(436, 507);
             this.MainLayout.TabIndex = 0;
             // 
             // ContentPanel
@@ -106,7 +106,7 @@
             this.ContentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentPanel.Location = new System.Drawing.Point(13, 13);
             this.ContentPanel.Name = "ContentPanel";
-            this.ContentPanel.Size = new System.Drawing.Size(328, 481);
+            this.ContentPanel.Size = new System.Drawing.Size(410, 481);
             this.ContentPanel.TabIndex = 0;
             // 
             // actionPanel
@@ -124,15 +124,15 @@
             this.actionPanel.Name = "actionPanel";
             this.actionPanel.RowCount = 1;
             this.actionPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.actionPanel.Size = new System.Drawing.Size(328, 40);
+            this.actionPanel.Size = new System.Drawing.Size(410, 40);
             this.actionPanel.TabIndex = 24;
             // 
             // saveButton
             // 
             this.saveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.saveButton.Location = new System.Drawing.Point(171, 3);
+            this.saveButton.Location = new System.Drawing.Point(213, 3);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(73, 34);
+            this.saveButton.Size = new System.Drawing.Size(94, 34);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -141,9 +141,9 @@
             // resetButton
             // 
             this.resetButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resetButton.Location = new System.Drawing.Point(82, 3);
+            this.resetButton.Location = new System.Drawing.Point(103, 3);
             this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(73, 34);
+            this.resetButton.Size = new System.Drawing.Size(94, 34);
             this.resetButton.TabIndex = 1;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@
             // 
             // logPathBrowse
             // 
-            this.logPathBrowse.Location = new System.Drawing.Point(289, 219);
+            this.logPathBrowse.Location = new System.Drawing.Point(367, 219);
             this.logPathBrowse.Name = "logPathBrowse";
             this.logPathBrowse.Size = new System.Drawing.Size(26, 23);
             this.logPathBrowse.TabIndex = 23;
@@ -161,7 +161,7 @@
             // 
             // testPathBrowse
             // 
-            this.testPathBrowse.Location = new System.Drawing.Point(289, 186);
+            this.testPathBrowse.Location = new System.Drawing.Point(367, 186);
             this.testPathBrowse.Name = "testPathBrowse";
             this.testPathBrowse.Size = new System.Drawing.Size(26, 23);
             this.testPathBrowse.TabIndex = 22;
@@ -171,7 +171,7 @@
             // 
             // capturePathBrowse
             // 
-            this.capturePathBrowse.Location = new System.Drawing.Point(288, 155);
+            this.capturePathBrowse.Location = new System.Drawing.Point(366, 155);
             this.capturePathBrowse.Name = "capturePathBrowse";
             this.capturePathBrowse.Size = new System.Drawing.Size(26, 23);
             this.capturePathBrowse.TabIndex = 21;
@@ -186,19 +186,16 @@
             this.bmpRadio.Name = "bmpRadio";
             this.bmpRadio.Size = new System.Drawing.Size(57, 17);
             this.bmpRadio.TabIndex = 20;
-            this.bmpRadio.TabStop = true;
             this.bmpRadio.Text = "Bitmap";
             this.bmpRadio.UseVisualStyleBackColor = true;
             // 
             // pngRadio
             // 
-            this.pngRadio.AutoCheck = false;
             this.pngRadio.AutoSize = true;
             this.pngRadio.Location = new System.Drawing.Point(181, 131);
             this.pngRadio.Name = "pngRadio";
             this.pngRadio.Size = new System.Drawing.Size(44, 17);
             this.pngRadio.TabIndex = 19;
-            this.pngRadio.TabStop = true;
             this.pngRadio.Text = "Png";
             this.pngRadio.UseVisualStyleBackColor = true;
             // 
@@ -209,14 +206,13 @@
             this.jpegRadio.Name = "jpegRadio";
             this.jpegRadio.Size = new System.Drawing.Size(48, 17);
             this.jpegRadio.TabIndex = 18;
-            this.jpegRadio.TabStop = true;
             this.jpegRadio.Text = "Jpeg";
             this.jpegRadio.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(286, 97);
+            this.label10.Location = new System.Drawing.Point(364, 97);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(28, 13);
             this.label10.TabIndex = 17;
@@ -237,13 +233,13 @@
             this.logPathText.Location = new System.Drawing.Point(127, 221);
             this.logPathText.Name = "logPathText";
             this.logPathText.ReadOnly = true;
-            this.logPathText.Size = new System.Drawing.Size(154, 20);
+            this.logPathText.Size = new System.Drawing.Size(231, 20);
             this.logPathText.TabIndex = 14;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(287, 63);
+            this.label8.Location = new System.Drawing.Point(365, 63);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 13;
@@ -252,7 +248,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(287, 29);
+            this.label7.Location = new System.Drawing.Point(365, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(23, 13);
             this.label7.TabIndex = 12;
@@ -264,7 +260,7 @@
             this.testPathText.Location = new System.Drawing.Point(127, 188);
             this.testPathText.Name = "testPathText";
             this.testPathText.ReadOnly = true;
-            this.testPathText.Size = new System.Drawing.Size(154, 20);
+            this.testPathText.Size = new System.Drawing.Size(232, 20);
             this.testPathText.TabIndex = 11;
             // 
             // capturePathText
@@ -273,28 +269,28 @@
             this.capturePathText.Location = new System.Drawing.Point(127, 157);
             this.capturePathText.Name = "capturePathText";
             this.capturePathText.ReadOnly = true;
-            this.capturePathText.Size = new System.Drawing.Size(154, 20);
+            this.capturePathText.Size = new System.Drawing.Size(231, 20);
             this.capturePathText.TabIndex = 10;
             // 
             // preferreSizeText
             // 
             this.preferreSizeText.Location = new System.Drawing.Point(127, 94);
             this.preferreSizeText.Name = "preferreSizeText";
-            this.preferreSizeText.Size = new System.Drawing.Size(154, 20);
+            this.preferreSizeText.Size = new System.Drawing.Size(231, 20);
             this.preferreSizeText.TabIndex = 8;
             // 
             // durationText
             // 
             this.durationText.Location = new System.Drawing.Point(127, 60);
             this.durationText.Name = "durationText";
-            this.durationText.Size = new System.Drawing.Size(154, 20);
+            this.durationText.Size = new System.Drawing.Size(232, 20);
             this.durationText.TabIndex = 7;
             // 
             // sizeLimitText
             // 
             this.sizeLimitText.Location = new System.Drawing.Point(127, 26);
             this.sizeLimitText.Name = "sizeLimitText";
-            this.sizeLimitText.Size = new System.Drawing.Size(154, 20);
+            this.sizeLimitText.Size = new System.Drawing.Size(232, 20);
             this.sizeLimitText.TabIndex = 6;
             // 
             // label6
@@ -353,7 +349,7 @@
             // 
             // browseFolderDialog
             // 
-            this.browseFolderDialog.RootFolder = System.Environment.SpecialFolder.MyDocuments;
+            this.browseFolderDialog.RootFolder = System.Environment.SpecialFolder.MyComputer;
             // 
             // GeneralSettingUI
             // 
@@ -361,7 +357,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MainLayout);
             this.Name = "GeneralSettingUI";
-            this.Size = new System.Drawing.Size(354, 507);
+            this.Size = new System.Drawing.Size(436, 507);
             this.MainLayout.ResumeLayout(false);
             this.ContentPanel.ResumeLayout(false);
             this.ContentPanel.PerformLayout();

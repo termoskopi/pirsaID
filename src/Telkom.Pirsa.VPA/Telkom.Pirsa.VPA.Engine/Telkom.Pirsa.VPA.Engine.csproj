@@ -58,11 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\FeatureExtractor.cs" />
+    <Compile Include="ComputerVision\FeatureExtractor.cs" />
+    <Compile Include="Helper\Validator.cs" />
     <Compile Include="Helper\VideoCapture.cs" />
     <Compile Include="ComputerVision\FaceRecognition\Recognizer.cs" />
     <Compile Include="ComputerVision\FaceRecognition\RecognizerParameter.cs" />
     <Compile Include="ComputerVision\FaceRecognition\RecognizerResult.cs" />
+    <Compile Include="Helper\VideoProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
