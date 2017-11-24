@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Core.Blueprint.Services
+namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 {
   public class ApplicationServiceBuilder : IApplicationServiceBuilder
   {

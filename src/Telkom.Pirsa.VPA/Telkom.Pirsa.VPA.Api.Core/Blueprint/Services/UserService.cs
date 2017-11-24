@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
-using Research.Web.Nancy.Application.Data.BusinessLogic;
-using Research.Web.Nancy.Application.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.BusinessLogic;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 using System;
-using Research.Web.Nancy.Application.Data.BusinessModel;
+using Telkom.Pirsa.VPA.Api.Data.BusinessModel;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Research.Web.Nancy.Application.Core.Blueprint.Services
+namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 {
   public class UserService
   {
@@ -164,6 +164,26 @@ namespace Research.Web.Nancy.Application.Core.Blueprint.Services
         var success = _userRepository.Update(model, filter);
         
         return success;
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
+
+    public JObject ValidateToken(string token)
+    {
+      try
+      {
+        AccessToken result = (AccessToken)_tokenRepository.Get(token);
+        if (result == null)
+          return null;
+        var user = _userRepository.Get(result.UserId);
+        if(user == null)
+          return null;
+        var userObj = JObject.Parse(user.Json);
+        userObj.Add(new JProperty("AccessToken", result.Token));
+        return userObj;
       }
       catch (Exception ex)
       {

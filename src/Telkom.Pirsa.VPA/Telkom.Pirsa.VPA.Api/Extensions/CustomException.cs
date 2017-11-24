@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 
-namespace Research.Web.Nancy.Application.Extensions
+namespace Telkom.Pirsa.VPA.Api.Extensions
 {
   public class CustomException : Exception
   {

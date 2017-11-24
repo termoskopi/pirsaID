@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Research.Web.Nancy.Application.Data.BusinessLogic;
-using Research.Web.Nancy.Application.Data.Core;
-using Research.Web.Nancy.Application.Data.DataAccess;
+using Telkom.Pirsa.VPA.Api.Data.BusinessLogic;
+using Telkom.Pirsa.VPA.Api.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.DataAccess;
 
-namespace Research.Web.Nancy.Application.Core.Blueprint.Services
+namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 {
  public class DataAccessManager
   {

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Research.Web.Nancy.Application.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 using System.Xml.Serialization;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 
-namespace Research.Web.Nancy.Application.Data.BusinessModel
+namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
 {
   [XmlRootAttribute("AccessToken")]
   public class AccessToken : BaseModel, IDataModel

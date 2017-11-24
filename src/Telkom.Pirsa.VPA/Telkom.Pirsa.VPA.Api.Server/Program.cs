@@ -1,8 +1,7 @@
 ﻿using System;
 using Nancy.Hosting.Self;
-using Research.Web.Nancy.Application.Core.Blueprint.Services;
 
-namespace Research.Web.Nancy.Server
+namespace Telkom.Pirsa.VPA.Api.Server
 {
   class Program
   {

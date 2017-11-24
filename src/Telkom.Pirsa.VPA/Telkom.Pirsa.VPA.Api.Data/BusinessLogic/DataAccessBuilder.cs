@@ -1,5 +1,5 @@
-﻿using Research.Web.Nancy.Application.Data.Core;
-using Research.Web.Nancy.Application.Data.DataAccess;
+﻿using Telkom.Pirsa.VPA.Api.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Data.BusinessLogic
+namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 {
     public class DataAccessBuilder
     {

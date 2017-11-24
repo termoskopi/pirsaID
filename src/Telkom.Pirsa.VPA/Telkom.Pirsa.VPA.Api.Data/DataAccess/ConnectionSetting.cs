@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace Research.Web.Nancy.Application.Data.DataAccess
+namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
 {
   class ConnectionSetting
   {

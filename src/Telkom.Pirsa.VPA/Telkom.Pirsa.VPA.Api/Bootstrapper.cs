@@ -2,12 +2,13 @@
 using Nancy.Authentication.Stateless;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
-using Research.Web.Nancy.Application.Core.Blueprint;
-using Research.Web.Nancy.Application.Core.Blueprint.Services;
-using Research.Web.Nancy.Application.Handlers.Upload;
-using Research.Web.Nancy.Application.Settings;
+using Telkom.Pirsa.VPA.Api.Authentication;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint.Services;
+using Telkom.Pirsa.VPA.Api.Handlers.Upload;
+using Telkom.Pirsa.VPA.Api.Settings;
 
-namespace Research.Web.Nancy.Application
+namespace Telkom.Pirsa.VPA.Api
 {
   public class Bootstrapper : DefaultNancyBootstrapper
   {
@@ -16,9 +17,12 @@ namespace Research.Web.Nancy.Application
       var configuration =
     new StatelessAuthenticationConfiguration(ctx =>
     {
-      if (string.IsNullOrEmpty(ctx.Request.Headers.Authorization))
+      if (!string.IsNullOrEmpty(ctx.Request.Headers.Authorization))
       {
-        return null;
+        var appBuilder = container.Resolve<IApplicationServiceBuilder>();
+        UserManager manager = new UserManager(appBuilder);
+        var user = manager.ValidateUser(ctx.Request.Headers.Authorization);
+        return user;
       }
       return null;
     });

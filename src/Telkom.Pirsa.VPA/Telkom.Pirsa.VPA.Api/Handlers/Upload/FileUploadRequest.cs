@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Nancy;
 
-namespace Research.Web.Nancy.Application.Handlers.Upload
+namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
 {
   public class FileUploadRequest
   {

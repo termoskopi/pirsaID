@@ -1,5 +1,5 @@
 ﻿
-namespace Research.Web.Nancy.Application.Core.Blueprint
+namespace Telkom.Pirsa.VPA.Api.Core.Blueprint
 {
   public interface IModule
   {

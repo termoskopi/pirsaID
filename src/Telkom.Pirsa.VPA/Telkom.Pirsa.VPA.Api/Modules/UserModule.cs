@@ -2,11 +2,11 @@
 using Nancy;
 using Nancy.Extensions;
 using Newtonsoft.Json.Linq;
-using Research.Web.Nancy.Application.Core.Blueprint;
-using Research.Web.Nancy.Application.Core.Blueprint.Services;
-using Research.Web.Nancy.Application.Extensions;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint.Services;
+using Telkom.Pirsa.VPA.Api.Extensions;
 
-namespace Research.Web.Nancy.Application.Modules
+namespace Telkom.Pirsa.VPA.Api.Modules
 {
   public class UserModule : NancyModule, IModule
   {
@@ -27,6 +27,7 @@ namespace Research.Web.Nancy.Application.Modules
       Get["/{id:int}"] = parameter => FindUser(parameter.id);
       Post["/{id:int}"] = parameter => UpdateUser(parameter.id);
       Post["/Auth"] = _ => FindUser();
+      Get["/Validate"] = _ => ValidateUser();
     }
     #endregion
     public Response GetUsers()
@@ -104,6 +105,25 @@ namespace Research.Web.Nancy.Application.Modules
         JObject result = _serviceBuilder.UserService.Login(model);
 
         return Response.AsText(result != null ? result.ToString() : null, "application/json");
+      }
+      catch (Exception ex)
+      {
+        return Response.AsJson<CustomException>(new CustomException(ex), HttpStatusCode.InternalServerError);
+      }
+    }
+
+    public Response ValidateUser()
+    {
+      try
+      {
+        var token = Request.Headers.Authorization;
+        if (string.IsNullOrEmpty(token))
+          return Response.AsJson<string>(new JObject(new JProperty("Message", "Token not present")).ToString(), HttpStatusCode.Unauthorized);
+        var result = _serviceBuilder.UserService.ValidateToken(token);
+        if(result == null)
+          return Response.AsJson<string>(new JObject(new JProperty("Message", "Token not valid")).ToString(), HttpStatusCode.Unauthorized);
+
+        return Response.AsText(new JObject(new JProperty("Message", "Validated")).ToString(), "application/json");
       }
       catch (Exception ex)
       {

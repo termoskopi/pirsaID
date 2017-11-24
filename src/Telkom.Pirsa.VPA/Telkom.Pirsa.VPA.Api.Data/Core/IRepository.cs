@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Data.Core
+namespace Telkom.Pirsa.VPA.Api.Data.Core
 {
   public interface IRepository
   {

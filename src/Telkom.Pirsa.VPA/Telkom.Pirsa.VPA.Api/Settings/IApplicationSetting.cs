@@ -1,6 +1,6 @@
 ﻿
 
-namespace Research.Web.Nancy.Application.Settings
+namespace Telkom.Pirsa.VPA.Api.Settings
 {
   public interface IApplicationSetting
   {

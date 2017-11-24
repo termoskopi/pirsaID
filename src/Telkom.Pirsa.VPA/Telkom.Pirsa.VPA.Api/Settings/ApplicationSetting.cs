@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Settings
+namespace Telkom.Pirsa.VPA.Api.Settings
 {
   public class ApplicationSetting : IApplicationSetting
   {

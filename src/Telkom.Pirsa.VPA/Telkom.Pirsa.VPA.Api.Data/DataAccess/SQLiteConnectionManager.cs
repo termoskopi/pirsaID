@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-using Research.Web.Nancy.Application.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 
-namespace Research.Web.Nancy.Application.Data.DataAccess
+namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
 {
   public class SQLiteConnectionManager : IConnectionManager, IDisposable
   {

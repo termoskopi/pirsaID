@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Research.Web.Nancy.Application.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 
 
-namespace Research.Web.Nancy.Application.Data.BusinessLogic
+namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 {
   public class BaseRepository
   {

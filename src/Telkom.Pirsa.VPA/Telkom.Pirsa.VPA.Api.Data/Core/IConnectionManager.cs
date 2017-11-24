@@ -1,5 +1,5 @@
 ﻿
-namespace Research.Web.Nancy.Application.Data.Core
+namespace Telkom.Pirsa.VPA.Api.Data.Core
 {
   /// <summary>
   /// Manages connection to a relational database

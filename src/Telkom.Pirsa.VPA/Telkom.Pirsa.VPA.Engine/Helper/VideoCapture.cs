@@ -120,7 +120,8 @@ namespace Telkom.Pirsa.VPA.Engine.Helper
                     imageToSave.ToBitmap().Save(path, setting.PreferredImageFormat);
                 else
                     imageGray.ToBitmap().Save(path, setting.PreferredImageFormat);
-
+                //imageToSave.Dispose();
+                //SimageGray.Dispose();
                 return path;
             }
             catch (Exception ex)

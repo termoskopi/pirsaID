@@ -1,4 +1,4 @@
-﻿using Research.Web.Nancy.Application.Data.Core;
+﻿using Telkom.Pirsa.VPA.Api.Data.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Data.DataAccess
+namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
 {
     public class DatabaseSeeder
     {

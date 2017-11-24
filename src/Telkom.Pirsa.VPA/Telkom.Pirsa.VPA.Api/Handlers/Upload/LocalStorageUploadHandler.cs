@@ -2,9 +2,9 @@
 using System.IO;
 using System.Threading.Tasks;
 using Nancy;
-using Research.Web.Nancy.Application.Settings;
+using Telkom.Pirsa.VPA.Api.Settings;
 
-namespace Research.Web.Nancy.Application.Handlers.Upload
+namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
 {
   public class LocalStorageUploadHandler : IFileUploadHandler
   {

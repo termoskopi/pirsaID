@@ -1,11 +1,11 @@
-﻿using Research.Web.Nancy.Application.Data.Core;
+﻿using Telkom.Pirsa.VPA.Api.Data.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
 
-namespace Research.Web.Nancy.Application.Data.BusinessLogic.Adapter
+namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
 {
     public class GenericAdapter
     {

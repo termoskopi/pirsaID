@@ -6,12 +6,12 @@ using Nancy.Responses;
 using Nancy.Responses.Negotiation;
 using Nancy.Security;
 using Newtonsoft.Json.Linq;
-using Research.Web.Nancy.Application.Core.Blueprint;
-using Research.Web.Nancy.Application.Core.Blueprint.Services;
-using Research.Web.Nancy.Application.Extensions;
-using Research.Web.Nancy.Application.Handlers.Upload;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint;
+using Telkom.Pirsa.VPA.Api.Core.Blueprint.Services;
+using Telkom.Pirsa.VPA.Api.Extensions;
+using Telkom.Pirsa.VPA.Api.Handlers.Upload;
 
-namespace Research.Web.Nancy.Application.Modules
+namespace Telkom.Pirsa.VPA.Api.Modules
 {
   public class BaseModule : NancyModule, IModule
   {

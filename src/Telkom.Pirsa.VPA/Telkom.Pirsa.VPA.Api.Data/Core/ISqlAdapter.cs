@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace Research.Web.Nancy.Application.Data.Core
+namespace Telkom.Pirsa.VPA.Api.Data.Core
 {
   /// <summary>
   /// Adapt Model structure to SQL queries and otherwise 

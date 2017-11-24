@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Handlers.Upload
+namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
 {
   public class FileUploadResult
   {

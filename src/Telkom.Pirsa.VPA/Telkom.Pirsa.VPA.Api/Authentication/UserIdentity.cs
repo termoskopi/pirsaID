@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using Nancy.Security;
 
-namespace Research.Web.Nancy.Application.Authentication
+namespace Telkom.Pirsa.VPA.Api.Authentication
 {
   public class UserIdentity : IUserIdentity
   {
-    private string _username;
-    private IList<string> _claims;
+    private readonly string _username;
+    private readonly IList<string> _claims;
 
-    public bool ValidateUserIdentity()
+    public UserIdentity(string username, IList<string> claims)
     {
-      try
-      {
-        return true;
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
+      _username = username;
+      _claims = claims;
     }
 
     #region IUserIdentity Members

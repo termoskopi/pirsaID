@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace Research.Web.Nancy.Application.Handlers.Upload
+namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
 {
   public interface IFileUploadHandler
   {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Research.Web.Nancy.Application.Data.BusinessModel;
-using Research.Web.Nancy.Application.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.BusinessModel;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 
 
-namespace Research.Web.Nancy.Application.Data.BusinessLogic.Adapter
+namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
 {
   public class AccessTokenAdapter : GenericAdapter, ISqlAdapter
   {

@@ -1,6 +1,6 @@
-﻿using Research.Web.Nancy.Application.Core.Blueprint.Services;
+﻿using Telkom.Pirsa.VPA.Api.Core.Blueprint.Services;
 
-namespace Research.Web.Nancy.Application.Core.Blueprint
+namespace Telkom.Pirsa.VPA.Api.Core.Blueprint
 {
   public interface IApplicationServiceBuilder
   {
