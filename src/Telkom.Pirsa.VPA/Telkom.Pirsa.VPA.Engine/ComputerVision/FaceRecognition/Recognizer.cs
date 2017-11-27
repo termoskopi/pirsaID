@@ -25,12 +25,19 @@ namespace Telkom.Pirsa.VPA.Engine.ComputerVision.FaceRecognition
         public Recognizer(RecognizerParameter parameter)
         {
             this.parameter = parameter;
-            Initialize();
+            //Initialize();
         }
 
         private void Initialize()
         {
+          try
+          {
             recognizer = new EigenFaceRecognizer(parameter.PrincipalComponentCount, double.MaxValue);
+          }
+          catch (Exception ex)
+          {
+            throw ex;
+          }
         }
 
         private void ExecuteTraining(string[] paths)

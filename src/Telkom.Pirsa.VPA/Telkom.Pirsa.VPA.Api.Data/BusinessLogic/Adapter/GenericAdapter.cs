@@ -117,7 +117,8 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
             var filterArgs = string.Empty;
             foreach (var md in filterColumn)
             {
-                var value = (attributes[md.Database] is string) ? string.Format("'{0}'", attributes[md.Database]) : attributes[md.Database].ToString();
+                var value = (attributes[md.Database] is string) ? string.Format("'{0}'", attributes[md.Database]) 
+                  : (attributes[md.Database] is DateTime) ? string.Format("{0:yyyy-MM-dd HH:mm:ss}", attributes[md.Database]) : attributes[md.Database].ToString();
                 filterArgs += string.Format("[{0}] = {1} and", md.Database, value);
             }
             // Removes additional comma
@@ -144,14 +145,16 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
                 if (found)
                     continue;
 
-                var value = (attr.Value is string) ? string.Format("'{0}'", attr.Value) : attr.Value.ToString();
+              var value = (attr.Value is string) ? string.Format("'{0}'", attr.Value) :
+                  (attr.Value is DateTime) ? string.Format("'{0:yyyy-MM-dd HH:mm:ss}'", attr.Value) : attr.Value.ToString();
                 columnArgs += string.Format("[{0}] = {1},", attr.Key, value);
             }
             // Removes additional comma
             columnArgs = columnArgs.Remove(columnArgs.Length - 1);
             foreach (var md in filter)
             {
-                var value = (attributes[md.Database] is string) ? string.Format("'{0}'", attributes[md.Database]) : attributes[md.Database].ToString();
+                var value = (attributes[md.Database] is string) ? string.Format("'{0}'", attributes[md.Database]) : 
+                  (attributes[md.Database] is DateTime) ? string.Format("'{0:yyyy-MM-dd HH:mm:ss}'", attributes[md.Database]) : attributes[md.Database].ToString();
                 filterArgs += string.Format("[{0}] = {1} and", md.Database, value);
             }
             // Removes additional comma

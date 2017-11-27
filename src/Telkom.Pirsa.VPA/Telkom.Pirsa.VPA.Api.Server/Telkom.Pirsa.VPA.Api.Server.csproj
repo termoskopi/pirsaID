@@ -31,7 +31,38 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
@@ -39,6 +70,10 @@
     <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -61,6 +96,14 @@
     <ProjectReference Include="..\Telkom.Pirsa.VPA.Api\Telkom.Pirsa.VPA.Api.csproj">
       <Project>{33ccdf55-3821-42d2-a838-70cb53e1b810}</Project>
       <Name>Telkom.Pirsa.VPA.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Telkom.Pirsa.VPA.Engine\Telkom.Pirsa.VPA.Engine.csproj">
+      <Project>{ac43454f-6135-46d3-a546-74ee7067ecdb}</Project>
+      <Name>Telkom.Pirsa.VPA.Engine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Telkom.Pirsa.VPA.Setting\Telkom.Pirsa.VPA.Setting.csproj">
+      <Project>{e75b933e-0d5a-4ce1-8b03-92862a2bafc7}</Project>
+      <Name>Telkom.Pirsa.VPA.Setting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

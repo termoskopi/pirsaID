@@ -11,6 +11,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
     protected readonly IConnectionManager _connection;
     protected IDataModel _model;
     protected ISqlAdapter _adapter;
+    protected readonly object _lock = new object();
 
     public BaseRepository(IConnectionManager connection)
     {
@@ -19,46 +20,52 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 
     protected bool CreateBase(IDataModel model, bool setPK = false)
     {
-      try
+      lock (_lock)
       {
-        _adapter.BuildQuery(model, AdapterForm.Create, null, setPK);
-        string sql = _adapter.Query;
+        try
+        {
+          _adapter.BuildQuery(model, AdapterForm.Create, null, setPK);
+          string sql = _adapter.Query;
 
-        if (!_connection.IsOpen)
-          _connection.Connect();
+          if (!_connection.IsOpen)
+            _connection.Connect();
 
-        return _connection.Execute(sql) > 0;
+          return _connection.Execute(sql) > 0;
 
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
-      finally
-      {
-        _connection.Disconnect();
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+        finally
+        {
+          _connection.Disconnect();
+        }
       }
     }
 
     protected bool UpdateBase(IDataModel model, IList<Metadata> filter)
     {
-      try
+      lock (_lock)
       {
-        if (!_connection.IsOpen)
-          _connection.Connect();
-        _adapter.BuildQuery(model, AdapterForm.Update, filter);
-        string query = _adapter.Query;
-        var result = _connection.Execute(query);
+        try
+        {
+          if (!_connection.IsOpen)
+            _connection.Connect();
+          _adapter.BuildQuery(model, AdapterForm.Update, filter);
+          string query = _adapter.Query;
+          var result = _connection.Execute(query);
 
-        return result > 0;
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
-      finally
-      {
-        _connection.Disconnect();
+          return result > 0;
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+        finally
+        {
+          _connection.Disconnect();
+        }
       }
     }
 
@@ -69,74 +76,83 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 
     protected IDataModel SelectBase(IDataModel model, object id)
     {
-      try
+      lock (_lock)
       {
-        if (!_connection.IsOpen)
-          _connection.Connect();
+        try
+        {
+          if (!_connection.IsOpen)
+            _connection.Connect();
 
-        _adapter.BuildQuery(model, AdapterForm.SelectID);
-        string query = _adapter.Query;
-        var result = _connection.Query(query);
+          _adapter.BuildQuery(model, AdapterForm.SelectID);
+          string query = _adapter.Query;
+          var result = _connection.Query(query);
 
-        _adapter.BuildObject(result, true);
+          _adapter.BuildObject(result, true);
 
-        return _adapter.Model;
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
-      finally
-      {
-        _connection.Disconnect();
+          return _adapter.Model;
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+        finally
+        {
+          _connection.Disconnect();
+        }
       }
     }
 
     protected IList<IDataModel> SelectBase(IDataModel model)
     {
-      try
+      lock (_lock)
       {
-        if (!_connection.IsOpen)
-          _connection.Connect();
-        _adapter.BuildQuery(model, AdapterForm.SelectAll);
-        string query = _adapter.Query;
-        var result = _connection.Query(query);
+        try
+        {
+          if (!_connection.IsOpen)
+            _connection.Connect();
+          _adapter.BuildQuery(model, AdapterForm.SelectAll);
+          string query = _adapter.Query;
+          var result = _connection.Query(query);
 
-        _adapter.BuildObject(result, false);
+          _adapter.BuildObject(result, false);
 
-        return _adapter.Collections;
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
-      finally
-      {
-        _connection.Disconnect();
+          return _adapter.Collections;
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+        finally
+        {
+          _connection.Disconnect();
+        }
       }
     }
 
     protected IList<IDataModel> SelectBase(IDataModel model, IList<Metadata> filter)
     {
-      try
+      lock (_lock)
       {
-        if (!_connection.IsOpen)
-          _connection.Connect();
-        _adapter.BuildQuery(model, AdapterForm.SelectFilter, filter);
-        string query = _adapter.Query;
-        var result = _connection.Query(query);
+        try
+        {
+          if (!_connection.IsOpen)
+            _connection.Connect();
+          _adapter.BuildQuery(model, AdapterForm.SelectFilter, filter);
+          string query = _adapter.Query;
+          var result = _connection.Query(query);
 
-        _adapter.BuildObject(result, false);
+          _adapter.BuildObject(result, false);
 
-        return _adapter.Collections;
-      }
-      catch (Exception ex)
-      {
-        throw ex;
-      }
-      finally
-      {
-        _connection.Disconnect();
+          return _adapter.Collections;
+        }
+        catch (Exception ex)
+        {
+          throw ex;
+        }
+        finally
+        {
+          _connection.Disconnect();
+        }
       }
     }
 

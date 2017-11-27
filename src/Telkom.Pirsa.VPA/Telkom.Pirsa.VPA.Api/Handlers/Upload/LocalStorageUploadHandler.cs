@@ -19,11 +19,11 @@ namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
 
     #region IFileUploadHandler Members
 
-    public async Task<FileUploadResult> HandleUpload(string fileName, Stream stream)
+    public async Task<FileUploadResult> HandleUpload(string fileName, Stream stream, string name = null)
     {
       try
       {
-        string uuid = GetFileName();
+        string uuid = GetFileName(fileName, name);
         string targetFile = GetTargetFile(uuid);
 
         using (FileStream destinationStream = File.Create(targetFile))
@@ -31,9 +31,10 @@ namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
           await stream.CopyToAsync(destinationStream);
         }
 
+
         return new FileUploadResult()
         {
-          Identifier = uuid
+          Identifier = GetUploadDirectory() + "\\" + uuid
         };
       }
       catch (Exception ex)
@@ -49,10 +50,16 @@ namespace Telkom.Pirsa.VPA.Api.Handlers.Upload
       return Path.Combine(GetUploadDirectory(), fileName);
     }
 
-    private string GetFileName()
+    private string GetFileName(string filename, string name = null)
     {
-      return Guid.NewGuid().ToString();
+      var ext = Path.GetExtension(filename);
+      if (string.IsNullOrEmpty(name))
+      {
+        name = Path.GetFileNameWithoutExtension(filename);
+      }
+      return string.Format("{0}-{1}{2}", name, Guid.NewGuid().ToString(), ext);
     }
+
 
     private string GetUploadDirectory()
     {

@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3008FCA3-3E81-4406-B124-D77C2F03E76E}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{FCDDD999-9253-4790-8016-92A14F66CA70}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Telkom.Pirsa.VPA.Api.Core</RootNamespace>
-    <AssemblyName>Telkom.Pirsa.VPA.Api.Core</AssemblyName>
+    <RootNamespace>Telkom.Pirsa.VPA.Api.Server.V2</RootNamespace>
+    <AssemblyName>Telkom.Pirsa.VPA.Api.Server.V2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,14 +22,17 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +42,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -46,21 +52,26 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nancy, Version=1.4.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\References\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\References\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.1.4.1\lib\net40\Nancy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.106.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net45\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -69,32 +80,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blueprint\IApplicationServiceBuilder.cs" />
-    <Compile Include="Blueprint\IModule.cs" />
-    <Compile Include="Blueprint\IQueueItem.cs" />
-    <Compile Include="Blueprint\ITaskScheduler.cs" />
-    <Compile Include="Blueprint\Enums.cs" />
-    <Compile Include="Blueprint\Services\ActivityLogService.cs" />
-    <Compile Include="Blueprint\Services\ApplicationServiceBuilder.cs" />
-    <Compile Include="Blueprint\Services\DataAccessManager.cs" />
-    <Compile Include="Blueprint\Services\DatabaseSeedService.cs" />
-    <Compile Include="Blueprint\Services\JobQueueItem.cs" />
-    <Compile Include="Blueprint\Services\RecognizerService.cs" />
-    <Compile Include="Blueprint\Services\RecognizerTaskScheduler.cs" />
-    <Compile Include="Blueprint\Services\SchedulerService.cs" />
-    <Compile Include="Blueprint\Services\SettingService.cs" />
-    <Compile Include="Blueprint\Services\TokenProvider.cs" />
-    <Compile Include="Blueprint\Services\UserService.cs" />
-    <Compile Include="Extension\EnumExtension.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Telkom.Pirsa.VPA.Api.Data\Telkom.Pirsa.VPA.Api.Data.csproj">
-      <Project>{55e61634-b153-4634-ac63-d3abdf287adc}</Project>
-      <Name>Telkom.Pirsa.VPA.Api.Data</Name>
+    <ProjectReference Include="..\Telkom.Pirsa.VPA.Api\Telkom.Pirsa.VPA.Api.csproj">
+      <Project>{33ccdf55-3821-42d2-a838-70cb53e1b810}</Project>
+      <Name>Telkom.Pirsa.VPA.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\Telkom.Pirsa.VPA.Engine\Telkom.Pirsa.VPA.Engine.csproj">
       <Project>{ac43454f-6135-46d3-a546-74ee7067ecdb}</Project>
@@ -105,14 +97,11 @@
       <Name>Telkom.Pirsa.VPA.Setting</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.106.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net45\System.Data.SQLite.Core.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.106.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.106.0\build\net45\System.Data.SQLite.Core.targets'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

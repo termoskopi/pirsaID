@@ -68,34 +68,46 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
         {
             try
             {
-                string filename = string.Format("ServerLog-{0:yyyyMMdd}.txt", DateTime.Now);
-                if (!File.Exists(filename))
-                {
-                    using (var writer = File.CreateText(filename))
-                    {
-                        writer.WriteLine("Server Log File created on {0:dd MMMM yyyy}", DateTime.Now);
-                        writer.Flush();
-                        writer.Close();
-                    }
-                }
-
-                using (var stream = File.Open(filename, FileMode.Append))
-                {
-                    using (var writer = new StreamWriter(stream))
-                    {
-                        writer.WriteLine("[{0:HH:mm:ss}] {1} accessing endpoint {2}", DateTime.Now, username, endpoint);
-                        writer.Flush();
-                        stream.Flush();
-                        writer.Close();
-                        stream.Close();
-                    }
-                }
-
+              LogSystemActivity(string.Format("{0} accessed endpoint {1}", username, endpoint));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public void LogSystemActivity(string activity)
+        {
+          try
+          {
+            string filename = string.Format("ServerLog-{0:yyyyMMdd}.txt", DateTime.Now);
+            if (!File.Exists(filename))
+            {
+              using (var writer = File.CreateText(filename))
+              {
+                writer.WriteLine("Server Log File created on {0:dd MMMM yyyy}", DateTime.Now);
+                writer.Flush();
+                writer.Close();
+              }
+            }
+
+            using (var stream = File.Open(filename, FileMode.Append))
+            {
+              using (var writer = new StreamWriter(stream))
+              {
+                writer.WriteLine("[{0:HH:mm:ss}] {1}", DateTime.Now, activity);
+                writer.Flush();
+                stream.Flush();
+                writer.Close();
+                stream.Close();
+              }
+            }
+
+          }
+          catch (Exception ex)
+          {
+            throw ex;
+          }
         }
     }
 }

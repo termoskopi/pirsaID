@@ -75,7 +75,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
                     Status = (int)JobStatus.Created,
                     StatusText = JobStatus.Created.GetDescription()
                 };
-
+                _systemTaskRepository.Create(model);
                 return model.Id;
             }
             catch(Exception ex)

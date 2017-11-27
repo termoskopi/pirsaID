@@ -14,6 +14,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
     private readonly IConnectionManager _connection;
     private readonly DatabaseSeeder _seeder;
     private readonly DataAccessBuilder _builder;
+    private readonly object _lock = new object();
 
     public DataAccessManager()
     {
@@ -40,7 +41,13 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 
     public IConnectionManager ConnectionManager
     {
-      get { return _connection; }
+      get 
+      {
+        lock (_lock)
+        {
+          return _connection;
+        } 
+      }
     }
 
   }

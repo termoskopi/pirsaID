@@ -21,7 +21,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
     {
       _serviceBuilder = builder;
       _uploadHandler = uploadHandler;
-      this.RequiresAuthentication();
+      //this.RequiresAuthentication();
       Configure();
     }
 
@@ -38,6 +38,12 @@ namespace Telkom.Pirsa.VPA.Api.Modules
         };
       Get["/Seed"] = _ => SeedDatabase();
       Post["/Uploads", true] = async (x, ct) => await Upload();
+      Get["/Load"] = _ =>
+      {
+        var response = _serviceBuilder.FaceRecognizerService.GetVideoProperties(@"C:\Users\Formulatrix\Downloads\Data\Data\fatimah1.mp4");
+
+        return Response.AsText(response.ToString(), "application/json");
+      };
 
     }
     #endregion
@@ -68,29 +74,24 @@ namespace Telkom.Pirsa.VPA.Api.Modules
           .WithReasonPhrase("The file not found!")
           .WithContentType("application/json");
       }
-
-      var uploadResult = await _uploadHandler.HandleUpload(file.Name, file.Value);
+      var name = Request.Form.Name;
+      var uploadResult = await _uploadHandler.HandleUpload(file.Name, file.Value, name);
 
       var response = new FileUploadResult() { Identifier = uploadResult.Identifier };
-
-      worker = new System.Threading.Thread(LongRunTask);
-      worker.Start();
+      
+      Task.Factory.StartNew(() => LongRunTask(response.Identifier, name));
+      
       return Negotiate
         .WithStatusCode(HttpStatusCode.OK)
         .WithModel(response)
         .WithContentType("application/json");
     }
 
-    private void LongRunTask()
+    private object LongRunTask(string url, string name)
     {
-      int expectedCount = 100;
-      int currentCount = 0;
-      while (currentCount++ < expectedCount)
-      {
-        System.Threading.Thread.Sleep(1000);
-        System.IO.File.AppendAllText("log.txt", string.Format("{0}{1}", DateTime.Now.ToLocalTime().ToString("dddd, dd MMMM yyyy hh:mm:ss tt"), Environment.NewLine));
-      }
-      System.IO.File.AppendAllText("log.txt", string.Format("Task completed {0}{1}", DateTime.Now.ToLocalTime().ToString("dddd, dd MMMM yyyy hh:mm:ss tt"), Environment.NewLine));
+      var response = _serviceBuilder.FaceRecognizerService.Capture("Anonymous", url, name);
+
+      return response;
     }
   }
 }

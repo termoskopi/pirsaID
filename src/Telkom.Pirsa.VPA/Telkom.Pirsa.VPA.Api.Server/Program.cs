@@ -1,6 +1,7 @@
 ﻿using System;
 using Nancy.Hosting.Self;
 using System.Configuration;
+using Telkom.Pirsa.VPA.Engine.Helper;
 
 namespace Telkom.Pirsa.VPA.Api.Server
 {
@@ -10,7 +11,7 @@ namespace Telkom.Pirsa.VPA.Api.Server
         {
             try
             {
-                RunServer();
+                RunTests();
             }
             catch (Exception ex)
             {
@@ -48,6 +49,8 @@ namespace Telkom.Pirsa.VPA.Api.Server
             try
             {
 
+              var properties = VideoCapture.LoadVideo(@"C:\Users\Formulatrix\Downloads\Data\Data\fatimah1.mp4", Setting.SettingManager.ReadFromFile());
+              //Console.WriteLine(response.ToString(Newtonsoft.Json.Formatting.Indented));
                 Console.ReadKey();
             }
             catch (Exception ex)

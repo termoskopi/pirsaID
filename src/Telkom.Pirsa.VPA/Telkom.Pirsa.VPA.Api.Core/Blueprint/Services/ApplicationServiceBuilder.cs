@@ -26,7 +26,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
             _settingService = new SettingService(_dataAccess);
             _schedulerService = new SchedulerService(_dataAccess);
             _scheduler = new RecognizerTaskScheduler(_schedulerService, _loggerService);
-            _recognizerService = new RecognizerService(_dataAccess, _scheduler, _schedulerService);
+            _recognizerService = new RecognizerService(_dataAccess, _scheduler, _schedulerService, _loggerService);
         }
 
         public DatabaseSeedService SeederService
@@ -53,7 +53,6 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
         {
             get { return _schedulerService; }
         }
-
 
         public ActivityLogService LoggerService
         {
