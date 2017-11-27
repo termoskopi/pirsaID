@@ -43,6 +43,7 @@
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.106.0\lib\net45\System.Data.SQLite.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,11 +53,21 @@
   <ItemGroup>
     <Compile Include="Blueprint\IApplicationServiceBuilder.cs" />
     <Compile Include="Blueprint\IModule.cs" />
+    <Compile Include="Blueprint\IQueueItem.cs" />
+    <Compile Include="Blueprint\ITaskScheduler.cs" />
+    <Compile Include="Blueprint\Enums.cs" />
+    <Compile Include="Blueprint\Services\ActivityLogService.cs" />
     <Compile Include="Blueprint\Services\ApplicationServiceBuilder.cs" />
     <Compile Include="Blueprint\Services\DataAccessManager.cs" />
     <Compile Include="Blueprint\Services\DatabaseSeedService.cs" />
+    <Compile Include="Blueprint\Services\JobQueueItem.cs" />
+    <Compile Include="Blueprint\Services\RecognizerService.cs" />
+    <Compile Include="Blueprint\Services\RecognizerTaskScheduler.cs" />
+    <Compile Include="Blueprint\Services\SchedulerService.cs" />
+    <Compile Include="Blueprint\Services\SettingService.cs" />
     <Compile Include="Blueprint\Services\TokenProvider.cs" />
     <Compile Include="Blueprint\Services\UserService.cs" />
+    <Compile Include="Extension\EnumExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +77,10 @@
     <ProjectReference Include="..\Telkom.Pirsa.VPA.Api.Data\Telkom.Pirsa.VPA.Api.Data.csproj">
       <Project>{55e61634-b153-4634-ac63-d3abdf287adc}</Project>
       <Name>Telkom.Pirsa.VPA.Api.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Telkom.Pirsa.VPA.Setting\Telkom.Pirsa.VPA.Setting.csproj">
+      <Project>{e75b933e-0d5a-4ce1-8b03-92862a2bafc7}</Project>
+      <Name>Telkom.Pirsa.VPA.Setting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

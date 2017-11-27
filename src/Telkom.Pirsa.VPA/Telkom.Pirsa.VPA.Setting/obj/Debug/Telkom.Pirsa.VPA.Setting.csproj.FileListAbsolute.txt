@@ -1,6 +1,0 @@
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\bin\Debug\Telkom.Pirsa.VPA.Setting.dll.config
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\bin\Debug\Telkom.Pirsa.VPA.Setting.dll
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\bin\Debug\Telkom.Pirsa.VPA.Setting.pdb
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\obj\Debug\Telkom.Pirsa.VPA.Setting.csprojResolveAssemblyReference.cache
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\obj\Debug\Telkom.Pirsa.VPA.Setting.dll
-D:\Development\Pirsa\VPA\src\Telkom.Pirsa.VPA\Telkom.Pirsa.VPA.Setting\obj\Debug\Telkom.Pirsa.VPA.Setting.pdb

@@ -22,6 +22,7 @@ namespace Telkom.Pirsa.VPA.Api
         var appBuilder = container.Resolve<IApplicationServiceBuilder>();
         UserManager manager = new UserManager(appBuilder);
         var user = manager.ValidateUser(ctx.Request.Headers.Authorization);
+        appBuilder.LoggerService.LogRequestActivity(user.UserName, ctx.Request.Url.ToString());
         return user;
       }
       return null;

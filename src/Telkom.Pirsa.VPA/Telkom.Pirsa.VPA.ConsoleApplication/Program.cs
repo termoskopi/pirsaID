@@ -8,6 +8,8 @@ using System.Drawing;
 using Emgu.CV.Structure;
 using System.Threading;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Collections.Concurrent;
 
 namespace Telkom.Pirsa.VPA.ConsoleApplication
 {
@@ -18,12 +20,97 @@ namespace Telkom.Pirsa.VPA.ConsoleApplication
         {
             //CaptureMain();
             //TrainMain();
-            TestMain();
+            
+            Task.Factory.StartNew(() => TestTaskQueue());
             //var video = @"E:\Users\Rohmad Raharjo\Videos\Captures\muthiah2.mp4";
             //double size = new FileInfo(video).Length;
             //Console.WriteLine("Loading a video file {0} with size of {1} MB", video, (size/1024/1024).ToString("N2"));
+            //Thread.Sleep(15000);
+            //Console.WriteLine("Canceling current task after 15 seconds!");
+            //requireBreak = true;
+            //Thread.Sleep(5000);
+            //Console.WriteLine("Canceling all tasks after 5 seconds");
+            //cancelAll = true;
+            Console.WriteLine("Task sceduler running in background, Press anykey to close!");
             Console.ReadKey();
 
+        }
+        static bool requireBreak = false;
+        static bool cancelAll = false;
+        static void TestTaskQueue()
+        {
+            Thread.Sleep(500);
+
+            var limit = 10;
+            var message = "Hello world!";
+
+            BlockingCollection<Action> actions = new BlockingCollection<Action>();
+
+            Action action1 = () => Method1(message);
+            Action action2 = () => Method2(limit);
+            Task.Factory.StartNew(() =>
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Thread.Sleep(1500);
+                    actions.Add(action1);
+                }
+            });
+
+            Task.Factory.StartNew(() => {
+                for (int i = 0; i < 3; i++)
+                {
+                    Thread.Sleep(4500);
+                    actions.Add(action2);
+                }
+            });
+
+            Task.Factory.StartNew(() => {
+                
+                while (!cancelAll)
+                {
+                    if (actions.Count <= 0)
+                    {
+                        Console.WriteLine("Waiting action to be added!");
+                        Thread.Sleep(1000);                    
+                    }
+                    else
+                    {
+                        Console.WriteLine("Current queue size: {0}", actions.Count);
+                        actions.Take().Invoke();
+                    }
+                }
+                Console.WriteLine("All tasks completed!");
+
+            });
+        }
+
+        static void Method1(string message)
+        {
+            if (requireBreak)
+            {
+                Console.WriteLine("Received cancel signal!");
+                requireBreak = false;
+                return;
+            }
+            Console.WriteLine("Executing Method1 with message {0}", message);
+            Thread.Sleep(2000);
+        }
+
+        static void Method2(int limit)
+        {
+            for (var i = 0; i < limit; i++)
+            {
+                if (requireBreak || cancelAll)
+                {
+                    Console.WriteLine("Task canceled on iteration {0}", i);
+                    break;
+                }
+
+                Console.WriteLine("Executing Method2 iteration {0}", i);
+                Thread.Sleep(2000);
+            }
+            requireBreak = false;
         }
 
         static void CaptureMain()

@@ -22,7 +22,7 @@ create table [History] (
 	[ActionDate] datetime not null default current_timestamp
 );
 
-create table [Results] (
+create table [Result] (
 	[Id] integer not null primary key,
 	[TaskId] int not null,
 	[VideoSource] nvarchar (256) not null

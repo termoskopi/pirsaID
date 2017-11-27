@@ -59,13 +59,25 @@
   <ItemGroup>
     <Compile Include="BusinessLogic\AccessTokenRepository.cs" />
     <Compile Include="BusinessLogic\Adapter\AccessTokenAdapter.cs" />
+    <Compile Include="BusinessLogic\Adapter\ResultItemAdapter.cs" />
+    <Compile Include="BusinessLogic\Adapter\ResultsAdapter.cs" />
+    <Compile Include="BusinessLogic\Adapter\SystemTaskAdapter.cs" />
+    <Compile Include="BusinessLogic\Adapter\HistoryAdapter.cs" />
     <Compile Include="BusinessLogic\Adapter\GenericAdapter.cs" />
     <Compile Include="BusinessLogic\Adapter\UserAdapter.cs" />
     <Compile Include="BusinessLogic\BaseRepository.cs" />
+    <Compile Include="BusinessLogic\ResultItemRepository.cs" />
+    <Compile Include="BusinessLogic\ResultRepository.cs" />
+    <Compile Include="BusinessLogic\SystemTaskRepository.cs" />
+    <Compile Include="BusinessLogic\HistoryRepository.cs" />
     <Compile Include="BusinessLogic\DataAccessBuilder.cs" />
     <Compile Include="BusinessLogic\UserRepository.cs" />
     <Compile Include="BusinessModel\AccessToken.cs" />
     <Compile Include="BusinessModel\BaseModel.cs" />
+    <Compile Include="BusinessModel\ResultItem.cs" />
+    <Compile Include="BusinessModel\Result.cs" />
+    <Compile Include="BusinessModel\SystemTask.cs" />
+    <Compile Include="BusinessModel\History.cs" />
     <Compile Include="BusinessModel\User.cs" />
     <Compile Include="Core\AdapterForm.cs" />
     <Compile Include="Core\ForEachExtension.cs" />

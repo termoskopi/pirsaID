@@ -37,7 +37,11 @@ namespace Telkom.Pirsa.VPA.Api.Authentication
     { 
       IList<string> claims = new List<string>();
       claims.Add(user["Username"].ToString());
-      claims.Add("UserRole");
+      if (user["Username"].ToString().Trim() == "admin")
+          claims.Add("Admin");
+      else
+          claims.Add("User");
+
       return claims;
 
     }

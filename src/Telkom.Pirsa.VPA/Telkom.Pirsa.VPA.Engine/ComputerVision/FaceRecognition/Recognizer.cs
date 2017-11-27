@@ -126,12 +126,13 @@ namespace Telkom.Pirsa.VPA.Engine.ComputerVision.FaceRecognition
             return loaded;
         }
 
-        public bool Tests(string video, string targetLocation)
+        public IList<string> Tests(string video, string targetLocation)
         {
             if (!Directory.Exists(targetLocation))
             {
                 Directory.CreateDirectory(targetLocation);
             }
+            IList<string> names = new List<string>();
             using (Capture capture = new Capture(video))
             {
                 var name = Path.GetFileName(video);
@@ -168,11 +169,13 @@ namespace Telkom.Pirsa.VPA.Engine.ComputerVision.FaceRecognition
                                 var font = new MCvFont(Emgu.CV.CvEnum.FONT.CV_FONT_HERSHEY_SIMPLEX, .75d, .75d);
                                 if (result.Label < 0 || result.Distance > parameter.Threshold)
                                 {
+                                    names.Add("Unknown");
                                     clonedImage.Draw("Unknown", ref font, new Point(face.X - 5, face.Y - 5), new Bgr(Color.Red));
                                 }
                                 else
                                 {
                                     detected = true;
+                                    names.Add(trainedResults[result.Label].Label);
                                     clonedImage.Draw(trainedResults[result.Label].Label, ref font, new Point(face.X - 2, face.Y - 2), new Bgr(Color.LightGreen));
                                 }
                             }
@@ -181,7 +184,7 @@ namespace Telkom.Pirsa.VPA.Engine.ComputerVision.FaceRecognition
                         }
                     }
                 }
-                return true;
+                return names.Distinct().ToList();
             }
         }
 

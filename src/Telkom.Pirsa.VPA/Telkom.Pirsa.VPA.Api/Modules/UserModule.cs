@@ -1,6 +1,7 @@
 ﻿using System;
 using Nancy;
 using Nancy.Extensions;
+using Nancy.Security;
 using Newtonsoft.Json.Linq;
 using Telkom.Pirsa.VPA.Api.Core.Blueprint;
 using Telkom.Pirsa.VPA.Api.Core.Blueprint.Services;
@@ -15,6 +16,8 @@ namespace Telkom.Pirsa.VPA.Api.Modules
     public UserModule(IApplicationServiceBuilder builder) : base("/Users")
     {
       _serviceBuilder = builder;
+      this.RequiresAuthentication();
+      this.RequiresClaims(new[] { "Admin" });
       Configure();
     }
 
@@ -26,16 +29,15 @@ namespace Telkom.Pirsa.VPA.Api.Modules
       Post["/"] = _ => AddUser();
       Get["/{id:int}"] = parameter => FindUser(parameter.id);
       Post["/{id:int}"] = parameter => UpdateUser(parameter.id);
-      Post["/Auth"] = _ => FindUser();
-      Get["/Validate"] = _ => ValidateUser();
     }
     #endregion
+
     public Response GetUsers()
     {
       try
       {
         var responseText = _serviceBuilder.UserService.GetAllUsers().ToString(Newtonsoft.Json.Formatting.Indented);
-
+        _serviceBuilder.LoggerService.LogActivity(string.Format("{0} lists API users", Context.CurrentUser.UserName), Request.Url.ToString());
         return Response.AsText(responseText, "application/json");
       }
       catch (Exception ex)
@@ -56,6 +58,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
         { 
           new JProperty("Success", status)
         };
+        _serviceBuilder.LoggerService.LogActivity(string.Format("{0} add a new API user", Context.CurrentUser.UserName), Request.Url.ToString());
         return Response.AsText(response.ToString(), "application/json");
       }
       catch (Exception ex)
@@ -88,42 +91,8 @@ namespace Telkom.Pirsa.VPA.Api.Modules
         { 
           new JProperty("Success", status)
         };
+        _serviceBuilder.LoggerService.LogActivity(string.Format("{0} update an API user information", Context.CurrentUser.UserName), Request.Url.ToString());
         return Response.AsText(response.ToString(), "application/json");
-      }
-      catch (Exception ex)
-      {
-        return Response.AsJson<CustomException>(new CustomException(ex), HttpStatusCode.InternalServerError);
-      }
-    }
-
-    public Response FindUser()
-    {
-      try
-      {
-        var body = Request.Body.AsString(System.Text.Encoding.ASCII);
-        JObject model = JObject.Parse(body);
-        JObject result = _serviceBuilder.UserService.Login(model);
-
-        return Response.AsText(result != null ? result.ToString() : null, "application/json");
-      }
-      catch (Exception ex)
-      {
-        return Response.AsJson<CustomException>(new CustomException(ex), HttpStatusCode.InternalServerError);
-      }
-    }
-
-    public Response ValidateUser()
-    {
-      try
-      {
-        var token = Request.Headers.Authorization;
-        if (string.IsNullOrEmpty(token))
-          return Response.AsJson<string>(new JObject(new JProperty("Message", "Token not present")).ToString(), HttpStatusCode.Unauthorized);
-        var result = _serviceBuilder.UserService.ValidateToken(token);
-        if(result == null)
-          return Response.AsJson<string>(new JObject(new JProperty("Message", "Token not valid")).ToString(), HttpStatusCode.Unauthorized);
-
-        return Response.AsText(new JObject(new JProperty("Message", "Validated")).ToString(), "application/json");
       }
       catch (Exception ex)
       {

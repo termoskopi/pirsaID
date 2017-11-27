@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Telkom.Pirsa.VPA.Api.Data.Core;
-using System.Xml.Serialization;
-using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
+using Telkom.Pirsa.VPA.Api.Data.Core;
 
 
 namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
