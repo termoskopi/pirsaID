@@ -49,7 +49,7 @@ namespace Telkom.Pirsa.VPA.Api.Server
             try
             {
 
-              var properties = VideoCapture.LoadVideo(@"C:\Users\Formulatrix\Downloads\Data\Data\fatimah1.mp4", Setting.SettingManager.ReadFromFile());
+                var properties = VideoCapture.LoadVideo(@"E:\Users\Rohmad Raharjo\Videos\Captures\fatimah1.mp4", Setting.SettingManager.ReadFromFile());
               //Console.WriteLine(response.ToString(Newtonsoft.Json.Formatting.Indented));
                 Console.ReadKey();
             }

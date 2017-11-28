@@ -82,6 +82,7 @@
     <Compile Include="Handlers\Upload\LocalStorageUploadHandler.cs" />
     <Compile Include="Modules\AuthenticationModule.cs" />
     <Compile Include="Modules\BaseModule.cs" />
+    <Compile Include="Modules\RecognizerModule.cs" />
     <Compile Include="Modules\SettingModule.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

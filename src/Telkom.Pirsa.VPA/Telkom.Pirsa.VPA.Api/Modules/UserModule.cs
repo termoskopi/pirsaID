@@ -37,7 +37,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
       try
       {
         var responseText = _serviceBuilder.UserService.GetAllUsers().ToString(Newtonsoft.Json.Formatting.Indented);
-        _serviceBuilder.LoggerService.LogActivity(string.Format("{0} lists API users", Context.CurrentUser.UserName), Request.Url.ToString());
+        //_serviceBuilder.LoggerService.LogActivity(string.Format("{0} lists API users", Context.CurrentUser.UserName), Request.Url.ToString());
         return Response.AsText(responseText, "application/json");
       }
       catch (Exception ex)
@@ -91,7 +91,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
         { 
           new JProperty("Success", status)
         };
-        _serviceBuilder.LoggerService.LogActivity(string.Format("{0} update an API user information", Context.CurrentUser.UserName), Request.Url.ToString());
+        //_serviceBuilder.LoggerService.LogActivity(string.Format("{0} update an API user information", Context.CurrentUser.UserName), Request.Url.ToString());
         return Response.AsText(response.ToString(), "application/json");
       }
       catch (Exception ex)

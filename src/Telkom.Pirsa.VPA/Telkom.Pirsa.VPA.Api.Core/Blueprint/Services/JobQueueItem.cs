@@ -82,8 +82,16 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 
         public void Execute()
         {
-            if (HasAction)
-                _action.Invoke();
+            try
+            {
+                if (HasAction)
+                    _action.Invoke();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

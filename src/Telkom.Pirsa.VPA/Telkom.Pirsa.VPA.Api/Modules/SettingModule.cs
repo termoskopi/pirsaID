@@ -50,7 +50,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
                 var body = Request.Body.AsString(System.Text.Encoding.ASCII);
                 JObject model = JObject.Parse(body);
                 var result = _serviceBuilder.SettingManagerService.SaveSetting(model);
-                _serviceBuilder.LoggerService.LogActivity(string.Format("{0} updates system setting", Context.CurrentUser.UserName), Request.Url.ToString());
+               // _serviceBuilder.LoggerService.LogActivity(string.Format("{0} updates system setting", Context.CurrentUser.UserName), Request.Url.ToString());
                 return Response.AsText(new JObject(new JProperty("Success", result)).ToString(), "application/json");
             }
             catch (Exception ex)

@@ -87,13 +87,15 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
       {
         if (!IsOpen)
           throw new NullReferenceException("The DB connection currently is not on open state! Please connect before execute command!");
-
-        SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
-        var affected = cmd.ExecuteNonQuery();
-        if (affected < 0)
-          throw new Exception("The last sql execution failed!");
-
-        return affected;
+        using (var transaction = _connection.BeginTransaction())
+        {
+            SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
+            var affected = cmd.ExecuteNonQuery();
+            transaction.Commit();
+            if (affected < 0)
+                throw new Exception("The last sql execution failed!");
+            return affected;
+        }
       }
       catch (Exception ex)
       {
@@ -133,10 +135,12 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
       {
         if (!IsOpen)
           throw new NullReferenceException("The DB connection currently is not on open state! Please connect before execute command!");
-
-        SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
-
-        return cmd.ExecuteReader();
+        using (var transaction = _connection.BeginTransaction())
+        {
+            SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
+            transaction.Commit();
+            return cmd.ExecuteReader();
+        }
       }
       catch (Exception ex)
       {

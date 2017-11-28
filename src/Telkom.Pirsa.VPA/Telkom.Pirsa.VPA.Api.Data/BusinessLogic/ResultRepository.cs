@@ -22,7 +22,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
     {
       try
       {
-        return CreateBase(model, true);
+        return CreateBase(model);
       }
       catch (Exception ex)
       {

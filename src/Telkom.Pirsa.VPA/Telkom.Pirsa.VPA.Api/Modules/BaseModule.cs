@@ -33,7 +33,6 @@ namespace Telkom.Pirsa.VPA.Api.Modules
 
       Get["/"] = _ =>
         {
-          this.RequiresAuthentication();
           return Response.AsText("{\"Message\": \"Hello World!\"}", "application/json");
         };
       Get["/Seed"] = _ => SeedDatabase();
@@ -79,7 +78,7 @@ namespace Telkom.Pirsa.VPA.Api.Modules
 
       var response = new FileUploadResult() { Identifier = uploadResult.Identifier };
       
-      Task.Factory.StartNew(() => LongRunTask(response.Identifier, name));
+      //Task.Factory.StartNew(() => LongRunTask(response.Identifier, name));
       
       return Negotiate
         .WithStatusCode(HttpStatusCode.OK)

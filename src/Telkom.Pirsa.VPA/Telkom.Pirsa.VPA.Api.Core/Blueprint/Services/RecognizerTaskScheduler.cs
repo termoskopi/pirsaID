@@ -15,7 +15,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
         private readonly SchedulerService _service;
         private readonly ActivityLogService _logger;
         private bool requireStop = false;
-        private bool cancelAll;
+        private bool cancelAll = false;
         private const int WAIT_TIME = 10000; // ms
 
         public RecognizerTaskScheduler(SchedulerService _scheduler, ActivityLogService logger)
@@ -44,6 +44,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
                 {
                     // Wait tasks added
                     Thread.Sleep(WAIT_TIME);
+                    continue;
                 }
                 var task = _queue.Take();
                 if (task.HasAction && !task.IsCanceled)

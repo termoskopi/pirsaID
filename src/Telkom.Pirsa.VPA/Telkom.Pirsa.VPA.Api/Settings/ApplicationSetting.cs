@@ -12,7 +12,7 @@ namespace Telkom.Pirsa.VPA.Api.Settings
 
     public string UploadDirectory
     {
-      get { return @"D:\Shared\Uploads"; }
+      get { return @"data\uploads"; }
     }
 
     public bool IsUploadBinary

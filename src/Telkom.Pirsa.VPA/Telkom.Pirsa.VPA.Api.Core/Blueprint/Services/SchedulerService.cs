@@ -48,7 +48,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
             }
         }
 
-        public int CreateTask(TaskType taskType, int taskId, string user, string video = null)
+        public long CreateTask(TaskType taskType, long taskId, string user, string video = null)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
 
                 var model = new SystemTask()
                 {
-                    Id = (int)DateTime.Now.Ticks,
+                    Id = DateTime.Now.Ticks,
                     Activity = activity,
                     Status = (int)JobStatus.Created,
                     StatusText = JobStatus.Created.GetDescription()
@@ -84,7 +84,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
             }
         }
 
-        public bool EnqueueTask(int taskId)
+        public bool EnqueueTask(long taskId)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
             }
         }
 
-        public bool ExecuteTask(int taskId)
+        public bool ExecuteTask(long taskId)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace Telkom.Pirsa.VPA.Api.Core.Blueprint.Services
             }
         }
 
-        private bool UpdateTaskStatus(int taskId, JobStatus status)
+        private bool UpdateTaskStatus(long taskId, JobStatus status)
         {
             try
             {

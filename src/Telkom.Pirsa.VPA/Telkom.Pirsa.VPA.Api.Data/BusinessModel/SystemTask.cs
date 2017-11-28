@@ -116,8 +116,8 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
                     new JProperty(ColumnStatus, Status),
                     new JProperty(ColumnStatusText, StatusText),
                     new JProperty(ColumnQueuedDate, QueuedDate.HasValue ? QueuedDate.Value.ToLocalTime().ToString("dddd, dd MMM yyyy hh:mm:ss tt") : "N/A"),
-                    new JProperty(ColumnQueuedDate, StartDate.HasValue ? StartDate.Value.ToLocalTime().ToString("dddd, dd MMM yyyy hh:mm:ss tt") : "N/A"),
-                    new JProperty(ColumnQueuedDate, FinishedDate.HasValue ? FinishedDate.Value.ToLocalTime().ToString("dddd, dd MMM yyyy hh:mm:ss tt") : "N/A")
+                    new JProperty(ColumnStartDate, StartDate.HasValue ? StartDate.Value.ToLocalTime().ToString("dddd, dd MMM yyyy hh:mm:ss tt") : "N/A"),
+                    new JProperty(ColumnFinishedDate, FinishedDate.HasValue ? FinishedDate.Value.ToLocalTime().ToString("dddd, dd MMM yyyy hh:mm:ss tt") : "N/A")
                 };
 
                 return json.ToString(Formatting.Indented);
@@ -128,7 +128,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
 
         #region Abstraction Properties
         [XmlElement(IsNullable = false)]
-        public int Id
+        public long Id
         {
             set
             {
@@ -136,7 +136,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
             }
             get
             {
-                return Convert.ToInt32(GetPropertyModelBase(ColumnId));
+                return Convert.ToInt64(GetPropertyModelBase(ColumnId));
             }
         }
 
@@ -190,7 +190,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
             get
             {
                 object result = GetPropertyModelBase(ColumnQueuedDate);
-                return result != null ? Convert.ToDateTime(result) : new Nullable<DateTime>();
+                return result != null && result != DBNull.Value? Convert.ToDateTime(result) : new Nullable<DateTime>();
             }
         }
 
@@ -204,7 +204,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
             get
             {
                 object result = GetPropertyModelBase(ColumnStartDate);
-                return result != null ? Convert.ToDateTime(result) : new Nullable<DateTime>();
+                return result != null && result != DBNull.Value ? Convert.ToDateTime(result) : new Nullable<DateTime>();
             }
         }
 
@@ -218,7 +218,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessModel
             get
             {
                 object result = GetPropertyModelBase(ColumnFinishedDate);
-                return result != null ? Convert.ToDateTime(result) : new Nullable<DateTime>();
+                return result != null && result != DBNull.Value ? Convert.ToDateTime(result) : new Nullable<DateTime>();
             }
         }
 
