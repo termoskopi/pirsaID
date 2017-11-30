@@ -97,5 +97,43 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
       get { return _model; }
     }
     #endregion
+
+    #region ISqlAdapter Members
+
+
+    public void BuildObject(System.Data.DataTable result, bool single)
+    {
+      try
+      {
+        if (result == null || result.Rows.Count < 0)
+        {
+          _model = null;
+          _collection = new List<IDataModel>();
+          return;
+        }
+        if (single)
+        {
+
+          IDataModel obj = new SystemTask();
+          _model = FetchRecord(result.Rows[0], obj);
+        }
+        else
+        {
+          _collection = new List<IDataModel>();
+          for (var rowNum = 0; rowNum < result.Rows.Count; rowNum++)
+          {
+            IDataModel obj = new SystemTask();
+            _collection.Add(FetchRecord(result.Rows[rowNum], obj));
+          }
+
+        }
+      }
+      catch (Exception ex)
+      {
+        throw ex;
+      }
+    }
+
+    #endregion
   }
 }

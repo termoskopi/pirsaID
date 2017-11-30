@@ -106,6 +106,7 @@
     <Compile Include="Core\Metadata.cs" />
     <Compile Include="DataAccess\ConnectionSetting.cs" />
     <Compile Include="DataAccess\DatabaseSeeder.cs" />
+    <Compile Include="DataAccess\Db.cs" />
     <Compile Include="DataAccess\SQLiteConnectionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

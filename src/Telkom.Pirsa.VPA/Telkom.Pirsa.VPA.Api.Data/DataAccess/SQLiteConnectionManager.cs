@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
+using System.Threading;
 using Telkom.Pirsa.VPA.Api.Data.Core;
 
 namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
@@ -12,7 +13,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
     private readonly bool _seed;
     private readonly string _connectionString;
     private SQLiteConnection _connection;
-
+    private readonly object _lock = new object();
     public SQLiteConnectionManager(bool seed = false)
     {
       _seed = seed;
@@ -24,7 +25,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
     private string BuildConnectionString(bool seed)
     {
       var cs = string.Format(
-        "Data Source={0}; Version={1}; Compress={2}; Password={3}; Pooling=True; Max Pool Size={4}; UTF8Encoding=True; Synchronous=Full;", 
+        "Data Source={0}; Version={1}; Compress={2}; Password={3}; Pooling=True; Max Pool Size={4}; UTF8Encoding=True; Synchronous=Full;",
         _setting.Database, _setting.Version, _setting.UseCompression, _setting.Password, _setting.MaxPool);
       if (seed)
       {
@@ -42,22 +43,35 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
     }
 
     public bool IsOpen
-    { 
-      get { return _connection != null && _connection.State == ConnectionState.Open; } 
+    {
+      get
+      {
+        lock (_lock)
+        {
+          return _connection != null && _connection.State == ConnectionState.Open;
+        }
+      }
     }
 
     public IDbConnection Connection
     {
-      get { return _connection; }
+      get
+      {
+        lock (_lock)
+        {
+          return _connection;
+        }
+      }
     }
 
     public bool Connect()
     {
       try
       {
+        Thread.Sleep(100);
         if (_connection == null)
           throw new ArgumentException("Connection object must be initialized before it can be used to connect!");
-        
+
         _connection.Open();
 
         return true;
@@ -74,6 +88,9 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
       {
         if (IsOpen)
           _connection.Close();
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        Thread.Sleep(100);
       }
       catch (Exception ex)
       {
@@ -85,17 +102,19 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
     {
       try
       {
-        if (!IsOpen)
-          throw new NullReferenceException("The DB connection currently is not on open state! Please connect before execute command!");
-        using (var transaction = _connection.BeginTransaction())
+        //if (!IsOpen)
+        //  throw new NullReferenceException("The DB connection currently is not on open state! Please connect before execute command!");
+        var affected = 0;
+       using (var connection = new SQLiteConnection(_connectionString))
         {
-            SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
-            var affected = cmd.ExecuteNonQuery();
-            transaction.Commit();
-            if (affected < 0)
-                throw new Exception("The last sql execution failed!");
-            return affected;
+          SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
+          affected = cmd.ExecuteNonQuery();
+          cmd.Dispose();
         }
+        if (affected < 0)
+          throw new Exception("The last sql execution failed!");
+        return affected;
+
       }
       catch (Exception ex)
       {
@@ -103,7 +122,7 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
       }
     }
 
-    public int Execute(string []sqls)
+    public int Execute(string[] sqls)
     {
       try
       {
@@ -135,12 +154,11 @@ namespace Telkom.Pirsa.VPA.Api.Data.DataAccess
       {
         if (!IsOpen)
           throw new NullReferenceException("The DB connection currently is not on open state! Please connect before execute command!");
-        using (var transaction = _connection.BeginTransaction())
-        {
-            SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
-            transaction.Commit();
-            return cmd.ExecuteReader();
-        }
+
+        SQLiteCommand cmd = new SQLiteCommand(sql, _connection);
+
+        return cmd.ExecuteReader();
+
       }
       catch (Exception ex)
       {

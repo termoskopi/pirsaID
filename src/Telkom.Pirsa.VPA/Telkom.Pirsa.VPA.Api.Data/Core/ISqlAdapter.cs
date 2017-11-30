@@ -16,6 +16,14 @@ namespace Telkom.Pirsa.VPA.Api.Data.Core
     void BuildObject(IDataReader result, bool single);
 
     /// <summary>
+    /// Builds  IDataModel instance or IDataModel collection from DataTable object instance results
+    /// </summary>
+    /// <param name="result">IDataReader object to convert</param>
+    /// <param name="single">Boolean marker to indicate the IDataReader instance will only contain a single record</param>
+    void BuildObject(DataTable result, bool single);
+
+
+    /// <summary>
     /// Builds sql string from IDataModel instances 
     /// </summary>
     /// <param name="model">IDataModel instance to build</param>

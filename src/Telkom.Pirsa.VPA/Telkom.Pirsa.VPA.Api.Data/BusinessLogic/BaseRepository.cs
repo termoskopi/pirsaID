@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Telkom.Pirsa.VPA.Api.Data.Core;
+using Telkom.Pirsa.VPA.Api.Data.DataAccess;
 
 
 namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
@@ -20,17 +21,17 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 
     protected bool CreateBase(IDataModel model, bool setPK = false)
     {
-      lock (_lock)
-      {
+      //lock (_lock)
+      //{
         try
         {
           _adapter.BuildQuery(model, AdapterForm.Create, null, setPK);
           string sql = _adapter.Query;
+          return Db.Execute(sql) > 0;
+          //if (!_connection.IsOpen)
+          //  _connection.Connect();
 
-          if (!_connection.IsOpen)
-            _connection.Connect();
-
-          return _connection.Execute(sql) > 0;
+          //return _connection.Execute(sql) > 0;
 
         }
         catch (Exception ex)
@@ -39,24 +40,24 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
         }
         finally
         {
-          _connection.Disconnect();
+          //_connection.Disconnect();
         }
-      }
+      //}
     }
 
     protected bool UpdateBase(IDataModel model, IList<Metadata> filter)
     {
-      lock (_lock)
-      {
+      //lock (_lock)
+      //{
         try
         {
-          if (!_connection.IsOpen)
-            _connection.Connect();
+          //if (!_connection.IsOpen)
+          //  _connection.Connect();
           _adapter.BuildQuery(model, AdapterForm.Update, filter);
           string query = _adapter.Query;
-          var result = _connection.Execute(query);
+          //var result = _connection.Execute(query);
 
-          return result > 0;
+          return Db.Execute(query) > 0;
         }
         catch (Exception ex)
         {
@@ -64,9 +65,9 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
         }
         finally
         {
-          _connection.Disconnect();
+          //_connection.Disconnect();
         }
-      }
+      //}
     }
 
     protected bool DeleteBase(IDataModel model, IList<Metadata> filter)
@@ -76,17 +77,17 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
 
     protected IDataModel SelectBase(IDataModel model, object id)
     {
-      lock (_lock)
-      {
+      //lock (_lock)
+      //{
         try
         {
-          if (!_connection.IsOpen)
-            _connection.Connect();
+          //if (!_connection.IsOpen)
+          //  _connection.Connect();
 
           _adapter.BuildQuery(model, AdapterForm.SelectID);
           string query = _adapter.Query;
-          var result = _connection.Query(query);
-
+          //var result = _connection.Query(query);
+          var result = Db.Query(query);
           _adapter.BuildObject(result, true);
 
           return _adapter.Model;
@@ -97,23 +98,23 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
         }
         finally
         {
-          _connection.Disconnect();
+          //_connection.Disconnect();
         }
-      }
+      //}
     }
 
     protected IList<IDataModel> SelectBase(IDataModel model)
     {
-      lock (_lock)
-      {
+      //lock (_lock)
+      //{
         try
         {
-          if (!_connection.IsOpen)
-            _connection.Connect();
+          //if (!_connection.IsOpen)
+          //  _connection.Connect();
           _adapter.BuildQuery(model, AdapterForm.SelectAll);
           string query = _adapter.Query;
-          var result = _connection.Query(query);
-
+          //var result = _connection.Query(query);
+          var result = Db.Query(query);
           _adapter.BuildObject(result, false);
 
           return _adapter.Collections;
@@ -124,23 +125,23 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
         }
         finally
         {
-          _connection.Disconnect();
+         // _connection.Disconnect();
         }
-      }
+      //}
     }
 
     protected IList<IDataModel> SelectBase(IDataModel model, IList<Metadata> filter)
     {
-      lock (_lock)
-      {
+      //lock (_lock)
+      //{
         try
         {
-          if (!_connection.IsOpen)
-            _connection.Connect();
+          //if (!_connection.IsOpen)
+          //  _connection.Connect();
           _adapter.BuildQuery(model, AdapterForm.SelectFilter, filter);
           string query = _adapter.Query;
-          var result = _connection.Query(query);
-
+          //var result = _connection.Query(query);
+          var result = Db.Query(query);
           _adapter.BuildObject(result, false);
 
           return _adapter.Collections;
@@ -151,9 +152,9 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic
         }
         finally
         {
-          _connection.Disconnect();
+          //_connection.Disconnect();
         }
-      }
+      //}
     }
 
   }

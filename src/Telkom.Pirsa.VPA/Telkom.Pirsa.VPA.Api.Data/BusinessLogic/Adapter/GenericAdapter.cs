@@ -38,8 +38,25 @@ namespace Telkom.Pirsa.VPA.Api.Data.BusinessLogic.Adapter
             {
                 throw ex;
             }
+        }
 
+        protected IDataModel FetchRecord(DataRow row, IDataModel model)
+        {
+          try
+          {
+            if (row == null)
+              throw new ArgumentNullException("row");
 
+            foreach (var md in _metadata)
+            {
+              model.SetProperty(md.Model, row[md.Database]);
+            }
+            return model;
+          }
+          catch (Exception ex)
+          {
+            throw ex;
+          }
         }
 
         protected void ExtractAttributes(IDataModel model, bool skipPrimary, out Dictionary<string, object> attributes)
